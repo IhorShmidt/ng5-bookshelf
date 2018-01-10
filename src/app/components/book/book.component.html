@@ -1,0 +1,15 @@
+<div class="center-align">
+  <div class="row">
+
+    <div class="col s6">
+      <h1>create book</h1>
+      <input type="text" [(ngModel)]="book.author" placeholder="author">
+      <input type="text" [(ngModel)]="book.clientTitle" placeholder="title">
+      <input type="text" [(ngModel)]="book.description" placeholder="description">
+      <input type="text" [(ngModel)]="book.pages" placeholder="pages">
+      <input type="text" [(ngModel)]="book.year" placeholder="year">
+      <button class="waves-effect waves-light btn"
+        (click)="addBook()">add book</button>
+    </div>
+  </div>
+</div>
