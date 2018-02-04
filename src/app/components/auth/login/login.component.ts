@@ -12,7 +12,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 export class LoginComponent {
 
 
-  loginForm = FormGroup;
+  loginForm: FormGroup;
   error = '';
 
   constructor(private router: Router,
@@ -34,8 +34,7 @@ export class LoginComponent {
   // }
 
   logIn(formValue: any) {
-    const email = 'ihor.shmidt@techmagic.co';
-    const password = '95698774q';
+    const { email, password } = formValue;
     this.authService.logIn(email, password)
       .subscribe(
       success => {
