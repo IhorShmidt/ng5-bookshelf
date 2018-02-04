@@ -1,53 +1,42 @@
-<div class="center-align">
+<div class="login-page">
+  <mat-tab-group class="auth-tab">
+    <mat-tab label="Login" class="tab">
 
-  <h5 class="indigo-text">Please, login into your account</h5>
-  <div class="section"></div>
 
-  <div class="container">
-    <div class="z-depth-1 grey lighten-4 row"
-         style="display: inline-block; padding: 32px 48px 0 48px; border: 1px solid #EEE;">
+      <mat-card>
+        <mat-card-content class="card-content">
 
-      <form class="col s12"
-            #f="ngForm"
-            (ngSubmit)="checkValidation(f)">
-        <div class='row'>
-          <div class='col s12'>
-          </div>
-        </div>
+          <form [formGroup]="loginForm"
+                class="auth-form"
+                #form="ngForm"
+                (ngSubmit)="logIn(loginForm.value)">
 
-        <div class='row'>
-          <div class='input-field col s12'>
-            <input
-              class='validate'
-              type='email'
-              name='email'
-              ngModel
-              required
-              id='email'/>
-            <label for='email'>Enter your email</label>
-          </div>
-        </div>
+            <mat-form-field class="full-width">
 
-        <div class='row'>
-          <div class='input-field col s12'>
-            <input required class='validate' type='password' name='password' ngModel id='password'/>
-            <label for='password'>Enter your password</label>
-          </div>
-          <label style='float: right;'>
-            <a class='pink-text' href='#!'><b>Forgot Password?</b></a>
-          </label>
-        </div>
+              <input matInput
+                     type="email"
+                     placeholder="Email"
+                     formControlName="email">
 
-        <br/>
-        <div class="center-align">
-          <div class='row'>
-            <button name='btn_login' [disabled]="!f.valid" class='col s12 btn btn-large waves-effect waves-light'>
-              Login
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
-  </div>
-  <a href="#!">Create account</a>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <input matInput
+                     placeholder="Password"
+                     type="password"
+                     formControlName="password">
+            </mat-form-field>
+            <mat-error *ngIf="error">{{error}}</mat-error>
+            <button mat-raised-button
+                    color="primary"
+                    [disabled]="!loginForm.valid"
+                    type="submit">Login</button>
+          </form>
+
+        </mat-card-content>
+      </mat-card>
+
+
+    </mat-tab>
+    <mat-tab label="Register">Content 2</mat-tab>
+  </mat-tab-group>
 </div>
