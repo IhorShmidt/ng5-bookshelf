@@ -35,9 +35,10 @@ export class AuthService {
     if (!this.token) {
       this.router.navigate(['auth']);
       return false;
-      // return !!this.token;
     }
-    return this.http.get(this.apiUrl).map(res => true);
+    return this.http.get(this.apiUrl, { responseType: 'text'})
+      .toPromise()
+      .then(res => true);
   }
 
   logOut() {
