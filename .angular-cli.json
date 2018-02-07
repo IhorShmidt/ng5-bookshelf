@@ -20,7 +20,8 @@
       "prefix": "app",
       "styles": [
         "styles.scss",
-        "material-theme.scss"
+        "../node_modules/bootstrap/dist/css/bootstrap-grid.css",
+        "../node_modules/bootstrap/dist/css/bootstrap-reboot.css"
       ],
       "scripts": [],
       "environmentSource": "environments/environment.ts",

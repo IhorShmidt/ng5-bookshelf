@@ -1,12 +1,29 @@
-<nav>
+
+
+<mat-toolbar color="primary">
   <div class="nav-wrapper">
-    <a href="#" class="brand-logo">Logo</a>
-    <ul id="nav-mobile" class="right hide-on-med-and-down">
-      <!--<li><a href="sass.html">Sass</a></li>-->
-      <!--<li><a href="badges.html">Components</a></li>-->
-      <!--<li><a href="collapsible.html">JavaScript</a></li>-->
-      <li><a routerLinkActive="active" routerLink="books">Books</a></li>
-      <li><a routerLinkActive="active" routerLink="wishlist">Wish List</a></li>
-    </ul>
+    <div class="logo">
+      <img src="../../../assets/image/logo_on_white.png" alt="logo">
+    </div>
+    <div class="nav-links">
+      <div><a routerLinkActive="active" routerLink="books">Books</a></div>
+      <div><a routerLinkActive="active" routerLink="wishlist">Wishlist</a></div>
+      <div>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <span>Profile</span>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button (click)="navigateToProfile()" mat-menu-item>
+            <span >Profile</span>
+          </button>
+
+          <button (click)="logOut()" mat-menu-item>
+            <span>Logout</span>
+          </button>
+
+        </mat-menu>
+      </div>
+    </div>
   </div>
-</nav>
+
+</mat-toolbar>

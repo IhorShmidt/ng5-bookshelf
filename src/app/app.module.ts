@@ -22,6 +22,7 @@ import {BooksService} from './services/books/books.service';
 import {AuthGuard} from './guard/auth-guard.guard';
 import {AuthService} from './services/auth/auth.service';
 import {appInterceptors} from './interceptors/auth.interceptors';
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import {appInterceptors} from './interceptors/auth.interceptors';
     BookComponent,
     FooterComponent,
     NavbarComponent,
-    WishListComponent
+    WishListComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

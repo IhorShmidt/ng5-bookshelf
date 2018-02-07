@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="profile-header">
+    <div class="col-6 profile-user">
+      <div [hidden]="!(user$ | async)?.avatarUrl" class="profile-avatar">
+        <img [src]="(user$ | async)?.avatarUrl" alt="profile-avatar">
+      </div>
+      <div><h3>{{(user$ | async)?.email}} </h3></div>
+      <div><h3>{{(user$ | async)?.firstName}} </h3></div>
+      <div><h3>{{(user$ | async)?.lastName}} </h3></div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,5 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
 import {MainComponent} from './components/main/main.component';
 import {AuthGuard} from './guard/auth-guard.guard';
 import {AuthComponent} from './components/auth/auth.component';
@@ -8,6 +8,7 @@ import {NotFoundComponent} from './components/not-found/not-found.component';
 import {BookComponent} from './components/book/book.component';
 import {ListComponent} from './components/list/list.component';
 import {WishListComponent} from './components/wish-list/wish-list.component';
+import {ProfileComponent} from './profile/profile.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'content', pathMatch: 'full'},
@@ -35,10 +36,8 @@ const routes: Routes = [
           {path: ':id', component: BookComponent}
         ]
       },
-      {
-        path: 'wishlist',
-        component: WishListComponent
-      },
+      {path: 'wishlist', component: WishListComponent},
+      {path: 'profile', component: ProfileComponent},
       {path: '', redirectTo: 'books/', pathMatch: 'full'}
     ]
   }
@@ -48,4 +47,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, {enableTracing: true})],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
