@@ -30,4 +30,12 @@ export class NavbarComponent implements OnInit {
     this.router.navigate(['profile'], {relativeTo: this.route});
   }
 
+  onAddNewBook() {
+    this.router.navigate(['create-book'], {relativeTo: this.route });
+  }
+
+  isAdmin() {
+    return this.authService.isAdmin();
+  }
+
 }

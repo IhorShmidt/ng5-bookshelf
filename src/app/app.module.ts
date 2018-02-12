@@ -23,6 +23,7 @@ import {AuthGuard} from './guard/auth-guard.guard';
 import {AuthService} from './services/auth/auth.service';
 import {appInterceptors} from './interceptors/auth.interceptors';
 import { ProfileComponent } from './profile/profile.component';
+import {AdminGuard} from './guard/admin.guard';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { ProfileComponent } from './profile/profile.component';
     appInterceptors,
     BooksService,
     AuthGuard,
-    AuthService
+    AuthService,
+    AdminGuard
   ],
   bootstrap: [AppComponent]
 })

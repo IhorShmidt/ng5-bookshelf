@@ -20,3 +20,12 @@ body {
 * {
   box-sizing: border-box;
 }
+
+button {
+  outline: none;
+}
+.custom-snack-bar {
+  simple-snack-bar {
+    justify-content: center;
+  }
+}

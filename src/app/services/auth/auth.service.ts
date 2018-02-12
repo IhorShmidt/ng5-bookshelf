@@ -60,4 +60,8 @@ export class AuthService {
     localStorage.clear();
     return this.router.navigate(['/auth/login']).then(() => this.token = undefined);
   }
+
+  isAdmin() {
+   return true;
+  }
 }

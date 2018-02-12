@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Book} from '../../models/book';
 import {ActivatedRoute} from '@angular/router';
 import {BooksService} from '../../services/books/books.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'app-book',
@@ -9,35 +11,21 @@ import {BooksService} from '../../services/books/books.service';
   styleUrls: ['./book.component.scss']
 })
 export class BookComponent implements OnInit {
-  book: Book = {
-    _id: undefined,
-    clientTitle:  '',
-    description: '',
-    author: '',
-    viewsCount: 0,
-    rating: 0,
-    pages: 0,
-    year: new Date(),
-    addedBy: '',
-    state: undefined,
-    bookedBy: undefined,
-    busyBy: undefined,
-    liked: 0,
-    disLiked: 0
-  };
+  book: Book;
   bookId: string;
 
-  constructor(private stateParams: ActivatedRoute, private bookService: BooksService) {
-  }
+  submitting = false;
+  createBookForm: FormGroup;
 
-  addBook() {
-    this.bookService.addBook(this.book).subscribe((data) => {
-      console.log(data);
-      this.book = data;
-    });
+  constructor(private stateParams: ActivatedRoute,
+              private formBuilder: FormBuilder,
+              private bookService: BooksService,
+              private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
+    this.setupForm();
+
     this.stateParams.params.subscribe((params) => {
       this.bookId = params['id'];
       if (this.bookId) {
@@ -48,4 +36,43 @@ export class BookComponent implements OnInit {
     });
   }
 
+  addBook() {
+    this.submitting = true;
+    const book = this.createBookForm.value;
+    book.year = +book.year; // temp casting to number
+
+    this.bookService.addBook(book).subscribe((data) => {
+      console.log(data);
+      this.submitting = false;
+      // add modal with ability to create new ?
+      this.createBookForm.reset();
+      this.showSnackBar();
+    });
+  }
+
+  showSnackBar() {
+    this.snackBar.open('Book was successfully added', null, {
+      duration: 700,
+      panelClass: 'custom-snack-bar'
+    });
+  }
+
+  private setupForm() {
+    this.createBookForm = this.formBuilder.group({
+      clientTitle: [null,
+        Validators.compose(
+          [Validators.required, Validators.maxLength(500), Validators.minLength(2)])],
+      description: [null,
+        Validators.compose(
+          [Validators.maxLength(5000), Validators.minLength(2)])],
+      author: [null,
+        Validators.compose(
+          [Validators.maxLength(500), Validators.minLength(2)])],
+      pages: [null,
+        Validators.compose(
+          [Validators.pattern(/^[+]?\d+([.]\d+)?$/)])],
+      year: [null, [Validators.compose([Validators.minLength(2), Validators.maxLength(100)])]],
+      imagePath: [null]
+    });
+  }
 }

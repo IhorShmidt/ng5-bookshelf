@@ -9,6 +9,7 @@ import {BookComponent} from './components/book/book.component';
 import {ListComponent} from './components/list/list.component';
 import {WishListComponent} from './components/wish-list/wish-list.component';
 import {ProfileComponent} from './profile/profile.component';
+import {AdminGuard} from './guard/admin.guard';
 
 const routes: Routes = [
   {path: '', redirectTo: 'content', pathMatch: 'full'},
@@ -36,6 +37,7 @@ const routes: Routes = [
           {path: ':id', component: BookComponent}
         ]
       },
+      {path: 'create-book', component: BookComponent, canActivate: [AdminGuard]},
       {path: 'wishlist', component: WishListComponent},
       {path: 'profile', component: ProfileComponent},
       {path: '', redirectTo: 'books/', pathMatch: 'full'}

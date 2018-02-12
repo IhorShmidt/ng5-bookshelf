@@ -17,6 +17,10 @@
             <span >Profile</span>
           </button>
 
+          <button *ngIf="isAdmin()" (click)="onAddNewBook()" mat-menu-item>
+            <span>Add new book</span>
+          </button>
+
           <button (click)="logOut()" mat-menu-item>
             <span>Logout</span>
           </button>
