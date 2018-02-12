@@ -1,6 +1,6 @@
 import {AuthService} from '../../../services/auth/auth.service';
 import {Router} from '@angular/router';
-import {Component, ViewEncapsulation} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -9,7 +9,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
   styleUrls: ['./login.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
 
   loginForm: FormGroup;
@@ -19,11 +19,14 @@ export class LoginComponent {
               private formBuilder: FormBuilder,
               private authService: AuthService) {
 
+
+  }
+
+  ngOnInit() {
     this.loginForm = this.formBuilder.group({
       email: ['', Validators.compose([Validators.email, Validators.required])],
       password: ['', Validators.required]
     });
-
   }
 
 
@@ -34,16 +37,16 @@ export class LoginComponent {
   // }
 
   logIn(formValue: any) {
-    const { email, password } = formValue;
+    const {email, password} = formValue;
     this.authService.logIn(email, password)
       .subscribe(
-      success => {
-        // this.router.navigate(['../']);
-      },
-      err => {
-        this.error = 'Invalid username or password';
-      }
-    );
+        success => {
+          // this.router.navigate(['../']);
+        },
+        err => {
+          this.error = 'Invalid username or password';
+        }
+      );
   }
 
 }

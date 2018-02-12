@@ -11,11 +11,24 @@ import {AuthService} from '../services/auth/auth.service';
 export class ProfileComponent implements OnInit {
 
   user$: Observable<UserInterface>;
+  userInitials = ' ? ';
 
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.user$ = this.authService.user$;
+    this.authService.user$.subscribe(
+      userData => {
+        if (userData.firstName && userData.lastName) {
+          this.userInitials = `${userData.firstName} ${userData.lastName}`;
+        }
+      }
+    );
   }
+
+  modelChanged(event, type) {
+    console.log(event, type);
+  }
+
+
 
 }

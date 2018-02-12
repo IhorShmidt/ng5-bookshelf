@@ -1,7 +1,15 @@
-<div class="row">
-  <div class="profile-header">
-    <div class="col-6 profile-user">
-      <div [hidden]="!(user$ | async)?.avatarUrl" class="profile-avatar">
+<div class="row profile">
+  <!--<div class="profile-header">-->
+    <div class="col-xs-1 col-lg-1 user-name">
+
+      <mat-form-field>
+        <input type="text"
+               matInput
+               [ngModel]="(user$ | async)?.email"
+               (ngModelChange)="modelChanged($event, 'email')">
+      </mat-form-field>
+
+      <div *ngIf="(user$ | async)?.avatarUrl" class="profile-avatar">
         <img [src]="(user$ | async)?.avatarUrl" alt="profile-avatar">
       </div>
       <div><h3>{{(user$ | async)?.email}} </h3></div>
@@ -9,4 +17,29 @@
       <div><h3>{{(user$ | async)?.lastName}} </h3></div>
     </div>
   </div>
-</div>
+<!--</div>-->
+
+<mat-card class="profile-2">
+  <mat-card-header>
+    <div mat-card-avatar class="avatar col-md-3">
+
+    </div>
+    <mat-card-title *ngIf="userInitials">{{userInitials}}</mat-card-title>
+    <mat-card-subtitle>{{(user$ | async)?.email}} </mat-card-subtitle>
+  </mat-card-header>
+
+  <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
+
+  <mat-card-content>
+    <p>
+      The Shiba Inu is the smallest of the six original and distinct spitz breeds of dog from Japan.
+      A small, agile dog that copes very well with mountainous terrain, the Shiba Inu was originally
+      bred for hunting.
+    </p>
+  </mat-card-content>
+  <!--<mat-card-actions>-->
+    <!--<button mat-button>LIKE</button>-->
+    <!--<button mat-button>SHARE</button>-->
+  <!--</mat-card-actions>-->
+</mat-card>
+
