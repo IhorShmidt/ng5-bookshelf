@@ -1,6 +1,6 @@
 <div class="container">
 
-
+  <mat-error *ngIf="error">{{ error }}</mat-error>
   <mat-card [ngClass]="{submitting: submitting}">
 
     <form [formGroup]="createBookForm" (ngSubmit)="addBook()">

@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Book} from '../../models/book';
 import {ActivatedRoute} from '@angular/router';
 import {BooksService} from '../../services/books/books.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {MatSnackBar} from '@angular/material';
+import {AbstractControl, FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {SnackBarService} from '../../services/snackbar/snackbar.service';
 
 @Component({
@@ -14,7 +13,7 @@ import {SnackBarService} from '../../services/snackbar/snackbar.service';
 export class BookComponent implements OnInit {
   book: Book;
   bookId: string;
-
+  error: null;
   submitting = false;
   createBookForm: FormGroup;
 
@@ -38,20 +37,32 @@ export class BookComponent implements OnInit {
   }
 
   addBook() {
+
+    if (!this.createBookForm.valid) {
+      return;
+    }
+
     this.submitting = true;
     const book = this.createBookForm.value;
     book.year = +book.year; // temp casting to number
+    setTimeout(() => {
+      this.submitting = false;
+      // because backend response to quickly
+    }, 1000);
 
     this.bookService.addBook(book).subscribe((data) => {
-      console.log(data);
-      this.submitting = false;
-      // add modal with ability to create new ?
-      this.createBookForm.reset();
-      this.showSnackBar();
-    });
+        // this.submitting = false;
+        // add modal with ability to create new ?
+        this.resetForm(this.createBookForm);
+        this.showSnackBar();
+      },
+      resp => {
+        this.error = resp.error.message;
+      }
+    );
   }
 
-  showSnackBar() {
+  private showSnackBar() {
     this.snackBarService.showSimple('Book was successfully added');
   }
 
@@ -73,4 +84,15 @@ export class BookComponent implements OnInit {
       imagePath: [null]
     });
   }
+
+  private resetForm(formGroup: FormGroup) {
+    let control: AbstractControl = null;
+    formGroup.reset();
+    formGroup.markAsUntouched();
+    Object.keys(formGroup.controls).forEach((name) => {
+      control = formGroup.controls[name];
+      control.setErrors(null);
+    });
+  }
+
 }
