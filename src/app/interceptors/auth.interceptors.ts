@@ -17,7 +17,8 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     const auth = this.inj.get(AuthService);
 
-    if ((req.url.startsWith(`${environment.apiUrl}/auth`)) && req.method === 'POST' || !req.url.startsWith(`${environment.apiUrl}`)) {
+    if ((req.url.startsWith(`${environment.apiUrl}/auth`)) && (req.method === 'POST' || req.method === 'PUT')
+      || !req.url.startsWith(`${environment.apiUrl}`)) {
       return next.handle(req);
     }
     const authHeader = auth.token;

@@ -58,10 +58,21 @@ export class AuthService {
 
   logOut() {
     localStorage.clear();
-    return this.router.navigate(['/auth/login']).then(() => this.token = undefined);
+    return this.router.navigate(['/auth/signin']).then(() => this.token = undefined);
   }
 
   isAdmin() {
-   return true;
+   return true; // temp hard coded value
+  }
+
+  signUp(value: any) {
+    return this.http.put(`${this.apiUrl}`, value).toPromise()
+      .then((res) => {
+        localStorage.setItem('token', res['token']);
+        localStorage.setItem('user', JSON.stringify(res['user']));
+        this.token = res['token'];
+        this.setUser(res['user']);
+        this.router.navigate(['/']);
+      });
   }
 }

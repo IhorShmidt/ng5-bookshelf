@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {UserInterface} from '../interfaces/user-interface';
-import {AuthService} from '../services/auth/auth.service';
+import {UserInterface} from '../../interfaces/user-interface';
+import {AuthService} from '../../services/auth/auth.service';
 
 @Component({
   selector: 'app-profile',

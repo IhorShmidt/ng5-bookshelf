@@ -4,6 +4,7 @@ import {ActivatedRoute} from '@angular/router';
 import {BooksService} from '../../services/books/books.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {MatSnackBar} from '@angular/material';
+import {SnackBarService} from '../../services/snackbar/snackbar.service';
 
 @Component({
   selector: 'app-book',
@@ -19,8 +20,8 @@ export class BookComponent implements OnInit {
 
   constructor(private stateParams: ActivatedRoute,
               private formBuilder: FormBuilder,
-              private bookService: BooksService,
-              private snackBar: MatSnackBar) {
+              private snackBarService: SnackBarService,
+              private bookService: BooksService) {
   }
 
   ngOnInit() {
@@ -51,10 +52,7 @@ export class BookComponent implements OnInit {
   }
 
   showSnackBar() {
-    this.snackBar.open('Book was successfully added', null, {
-      duration: 700,
-      panelClass: 'custom-snack-bar'
-    });
+    this.snackBarService.showSimple('Book was successfully added');
   }
 
   private setupForm() {

@@ -3,13 +3,14 @@ import {Routes, RouterModule} from '@angular/router';
 import {MainComponent} from './components/main/main.component';
 import {AuthGuard} from './guard/auth-guard.guard';
 import {AuthComponent} from './components/auth/auth.component';
-import {LoginComponent} from './components/auth/login/login.component';
+import {LoginComponent} from './components/auth/signin/signin.component';
 import {NotFoundComponent} from './components/not-found/not-found.component';
 import {BookComponent} from './components/book/book.component';
 import {ListComponent} from './components/list/list.component';
 import {WishListComponent} from './components/wish-list/wish-list.component';
-import {ProfileComponent} from './profile/profile.component';
+import {ProfileComponent} from './components/profile/profile.component';
 import {AdminGuard} from './guard/admin.guard';
+import {SignUpComponent} from './components/auth/sign-up/sign-up.component';
 
 const routes: Routes = [
   {path: '', redirectTo: 'content', pathMatch: 'full'},
@@ -17,8 +18,9 @@ const routes: Routes = [
     path: 'auth',
     component: AuthComponent,
     children: [
-      {path: 'login', component: LoginComponent},
-      {path: '', redirectTo: 'login', pathMatch: 'full'},
+      {path: '', redirectTo: 'signin', pathMatch: 'full'},
+      {path: 'signin', component: LoginComponent},
+      {path: 'signup', component: SignUpComponent},
       {path: '404', component: NotFoundComponent},
       {path: '**', redirectTo: '/404'}
     ]

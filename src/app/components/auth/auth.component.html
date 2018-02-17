@@ -1,6 +1,19 @@
-<div class="auth valign-wrapper">
+<div class="auth">
     <div class="sign-in_block">
-      <router-outlet></router-outlet>
+      <!--<router-outlet></router-outlet>-->
+
+      <mat-tab-group class="auth-tabs">
+
+        <mat-tab label="Login" class="tab">
+          <app-login></app-login>
+        </mat-tab>
+
+        <mat-tab label="Sign up" class="tab">
+          <app-sign-up></app-sign-up>
+        </mat-tab>
+
+      </mat-tab-group>
+
     </div>
 </div>
 

@@ -14,7 +14,7 @@ import {FooterComponent} from './components/footer/footer.component';
 import {NavbarComponent} from './components/navbar/navbar.component';
 import {WishListComponent} from './components/wish-list/wish-list.component';
 import {NotFoundComponent} from './components/not-found/not-found.component';
-import {LoginComponent} from './components/auth/login/login.component';
+import {LoginComponent} from './components/auth/signin/signin.component';
 import {AuthComponent} from './components/auth/auth.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
@@ -22,8 +22,10 @@ import {BooksService} from './services/books/books.service';
 import {AuthGuard} from './guard/auth-guard.guard';
 import {AuthService} from './services/auth/auth.service';
 import {appInterceptors} from './interceptors/auth.interceptors';
-import { ProfileComponent } from './profile/profile.component';
+import { ProfileComponent } from './components/profile/profile.component';
 import {AdminGuard} from './guard/admin.guard';
+import { SignUpComponent } from './components/auth/sign-up/sign-up.component';
+import {SnackBarService} from './services/snackbar/snackbar.service';
 
 
 @NgModule({
@@ -39,7 +41,8 @@ import {AdminGuard} from './guard/admin.guard';
     FooterComponent,
     NavbarComponent,
     WishListComponent,
-    ProfileComponent
+    ProfileComponent,
+    SignUpComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,8 @@ import {AdminGuard} from './guard/admin.guard';
     BooksService,
     AuthGuard,
     AuthService,
-    AdminGuard
+    AdminGuard,
+    SnackBarService
   ],
   bootstrap: [AppComponent]
 })

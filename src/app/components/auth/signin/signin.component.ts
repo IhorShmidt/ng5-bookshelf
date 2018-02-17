@@ -5,8 +5,8 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss'],
+  templateUrl: './signin.component.html',
+  styleUrls: ['./signin.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
 export class LoginComponent implements OnInit {
@@ -29,22 +29,18 @@ export class LoginComponent implements OnInit {
     });
   }
 
-
-  //
-  // checkValidation(form: NgForm) {
-  //   const value = form.value;
-  //   this.logIn(value.email, value.password);
-  // }
-
-  logIn(formValue: any) {
-    const {email, password} = formValue;
+  logIn() {
+    if (!this.loginForm.valid) {
+      return;
+    }
+    const {email, password} = this.loginForm.value;
     this.authService.logIn(email, password)
       .subscribe(
         success => {
           // this.router.navigate(['../']);
         },
-        err => {
-          this.error = 'Invalid username or password';
+        resp => {
+          this.error = resp.error.message;
         }
       );
   }
