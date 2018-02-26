@@ -1,21 +1,22 @@
 
-
 <mat-toolbar color="primary">
-  <div class="nav-wrapper">
-    <div class="logo">
+  <mat-toolbar-row>
+
+    <div class="left">
       <img src="../../../assets/image/logo_on_white.png" alt="logo">
     </div>
-    <div class="nav-links">
-      <div><a routerLinkActive="active" routerLink="books">Books</a></div>
+    <div class="d-flex  right">
+      <div class="nav-pills"><a routerLinkActive="active" routerLink="books">Books</a></div>
       <div><a routerLinkActive="active" routerLink="wishlist">Wishlist</a></div>
+
       <div>
-        <button mat-icon-button [matMenuTriggerFor]="menu">
-          <span>Profile</span>
-        </button>
+        <a mat-button [matMenuTriggerFor]="menu">
+          Profile
+        </a>
         <mat-menu #menu="matMenu">
-          <button (click)="navigateToProfile()" mat-menu-item>
-            <span >Profile</span>
-          </button>
+          <a (click)="navigateToProfile()" mat-menu-item>
+            Profile
+          </a>
 
           <button *ngIf="isAdmin()" (click)="onAddNewBook()" mat-menu-item>
             <span>Add new book</span>
@@ -28,6 +29,38 @@
         </mat-menu>
       </div>
     </div>
-  </div>
+  </mat-toolbar-row>
 
 </mat-toolbar>
+
+<!--<mat-toolbar color="primary">-->
+  <!--<div class="nav-wrapper">-->
+    <!--<div class="logo">-->
+      <!--<img src="../../../assets/image/logo_on_white.png" alt="logo">-->
+    <!--</div>-->
+    <!--<div class="nav-links">-->
+      <!--<div class="nav-pills"><a routerLinkActive="active" routerLink="books">Books</a></div>-->
+      <!--<div><a routerLinkActive="active" routerLink="wishlist">Wishlist</a></div>-->
+      <!--<div>-->
+        <!--<a mat-button [matMenuTriggerFor]="menu">-->
+          <!--Profile-->
+        <!--</a>-->
+        <!--<mat-menu #menu="matMenu">-->
+          <!--<a (click)="navigateToProfile()" mat-menu-item>-->
+            <!--Profile-->
+          <!--</a>-->
+
+          <!--<button *ngIf="isAdmin()" (click)="onAddNewBook()" mat-menu-item>-->
+            <!--<span>Add new book</span>-->
+          <!--</button>-->
+
+          <!--<button (click)="logOut()" mat-menu-item>-->
+            <!--<span>Logout</span>-->
+          <!--</button>-->
+
+        <!--</mat-menu>-->
+      <!--</div>-->
+    <!--</div>-->
+  <!--</div>-->
+
+<!--</mat-toolbar>-->

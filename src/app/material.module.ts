@@ -5,6 +5,7 @@ import {
   MatNativeDateModule, MatProgressBarModule, MatProgressSpinnerModule,
   MatSliderModule, MatSnackBarModule, MatTabsModule, MatToolbarModule
 } from '@angular/material';
+import {ScrollDispatchModule} from '@angular/cdk/scrolling';
 
 const modules = [
   MatButtonModule,
@@ -20,7 +21,8 @@ const modules = [
   MatProgressSpinnerModule,
   MatDatepickerModule,
   MatProgressBarModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  ScrollDispatchModule
 ];
 @NgModule({
   imports: [ modules ],
